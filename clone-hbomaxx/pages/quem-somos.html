@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos</title>
+    <link rel="stylesheet" href="../assets/css/entrar.css" />
+    <link rel="shortcut icon" href="/clone-hbomaxx/assets/img/meme.webp" type="image/x-icon">
+    <style>
+        /* Tela de carregamento */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            z-index: 9999;
+        }
+
+        /* Esconde a tela de carregamento após o carregamento da página */
+        body.loaded #loadingScreen {
+            display: none;
+        }
+
+        /* Exemplo de transição de fade-in */
+        body {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Layout */
+        main {
+            max-width: 800px; /* Limita a largura do conteúdo */
+            margin: 0 auto; /* Centraliza horizontalmente */
+            padding: 20px; /* Espaço interno */
+            margin-left: 50px; /* Adiciona espaço à esquerda para posicionar mais para o meio */
+            text-align: left; /* Alinha o texto à esquerda */
+        }
+
+        header {
+            max-width: 800px; /* Limita a largura do conteúdo */
+            margin: 0 auto; /* Centraliza horizontalmente */
+            padding: 20px; /* Espaço interno */
+            margin-left: 50px; /* Adiciona espaço à esquerda para posicionar mais para o meio */
+            text-align: left; /* Alinha o texto do cabeçalho à esquerda */
+        }
+
+        /* Responsividade (Mobile e Tablets) */
+        @media (max-width: 768px) {
+            nav.menu {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            nav.menu .menu-logo img {
+                width: 80%;
+            }
+
+            main {
+                margin-left: 20px; /* Menos espaço à esquerda em dispositivos menores */
+                padding: 15px;
+            }
+
+            footer {
+                padding: 20px 10px;
+            }
+
+            .footer-social-link img {
+                width: 30px; /* Ajusta o tamanho das imagens das redes sociais */
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav.menu .menu-logo img {
+                width: 70%; /* Ajusta a largura da logo para dispositivos muito pequenos */
+            }
+
+            main {
+                margin-left: 10px;
+                padding: 10px;
+            }
+
+            .footer-social-link img {
+                width: 25px;
+            }
+
+            footer {
+                padding: 15px 5px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <p>Clique no simbolo da HBO para voltar à tela inicial.</p>
+    <!-- Tela de carregamento -->
+    <div id="loadingScreen">Carregando...</div>
+
+    <nav class="menu">
+        <a href="../index.html" class="menu-logo">
+            <img
+                src="../assets/img/hbo-logo.svg"
+                alt="Logotipo HBOMax com o nome da marca"
+                class="menu-logo-image"
+            />
+        </a>
+        <div>
+            <a href="entrar.html" class="menu-item">Entrar/</a>
+            <a class="name">Grupo da A³</a>
+        </div>
+    </nav>
+    
+    <header class="header">
+        <div class="header-content">
+            <h1>Quem Somos:</h1>
+            <p>Matéria: Usabilidade, desenvolvimento web, mobile e jogos <br>
+                Docentes: Edjane e  Daniel<br>
+                Grupo 03:<br>
+                Lucas François – 1282422557 <br>
+                Sidney Lucas – 1282327098 <br>
+                Gerlianno Gley – 12823212247 <br>
+                Diogo Guedes – 12823132165 <br>
+                Lucas Lima – 1282320450 <br>
+                João Victor - 1282320094
+                </p>
+        </div>
+    </header>
+    
+    <main>
+        <div>
+            <h1>Nossa Missão:</h1>
+            <p>Atividade 3 (A3), O objetivo é desenvolver um projeto de site atendendo todas as Heuristicas de Nielsen</p><br>
+            <p> 1. Visibilidade do estado do sistema<br>
+                2. Correspondência entre o sistema e o mundo real<br>
+                3. Controle e liberdade do usuário<br>
+                4. Consistência e padrões<br>
+                5. Prevenção de erros<br>
+                6. Reconhecimento, não memorização<br>
+                7. Flexibilidade e eficiência de uso<br>
+                8. Estética e design minimalista<br>
+                9. Ajudar o usuário a reconhecer, diagnosticar e recuperar-se de erros<br>
+                10. Ajuda e documentação
+                </p>
+        </div>
+        <br>
+        <div>
+            <h1>Contato</h1>
+            <p>(xx) xxxxx-xxxx</p>
+        </div>
+        <br>
+    </main>
+    
+    <footer class="footer container">
+        <div>
+            <a class="footer-link" href="../pages/em-breve.html">Em breve/</a>
+            <a class="footer-link" href="../pages/destaques.html">Filmes em destaques/</a>
+            <a class="footer-link" href="../pages/quem-somos.html">Quem Somos/</a>
+            <a class="footer-link" href="../pages/ajuda.html">Ajuda/</a>
+        </div>
+        
+        <p class="text-small footer-legal">2024.2 Grupo 03 da A3. siglas do nosso grupo S,L,P,D,F, Todos os direitos reservados.</p>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/HBOMaxBr/" class="footer-social-link">
+                <img src="../assets/img/fb_0.png" alt="Facebook" />
+            </a>
+            <a href="https://twitter.com/HBOMaxBR" class="footer-social-link">
+                <img src="../assets/img/twitter_0.png" alt="Twitter" />
+            </a>
+            <a href="https://www.instagram.com/hbomaxbr/" class="footer-social-link">
+                <img src="../assets/img/instagram_0.png" alt="Instagram" />
+            </a>
+            <a href="https://www.youtube.com/c/hbomaxbr" class="footer-social-link">
+                <img src="../assets/img/youtube_0.png" alt="Youtube" />
+            </a>
+        </div>
+    </footer>
+
+    <!-- Script para remover a tela de carregamento quando a página for totalmente carregada -->
+    <script>
+        window.onload = function () {
+            document.body.classList.add('loaded'); // Adiciona a classe 'loaded' quando a página foi carregada
+            document.getElementById("loadingScreen").style.display = "none"; // Esconde a tela de carregamento
+        };
+    </script>
+</body>
+</html>

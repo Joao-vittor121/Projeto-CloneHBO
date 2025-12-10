@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Usuários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 2px;
+            cursor: pointer;
+        }
+        button.edit {
+            background-color: #f0ad4e;
+            color: white;
+            border: none;
+        }
+        button.delete {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+        }
+        button.reset-password {
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+        }
+        button.update {
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .search-bar {
+            display: none; /* Inicialmente oculta */
+            margin-left: 10px;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .actions button {
+            margin-right: 10px;
+        }
+        .search-bar input {
+            margin-right: 10px;
+        }
+        .edit-form {
+            display: none;
+            margin-top: 10px;
+        }
+        .edit-form input {
+            margin: 5px 0;
+            padding: 8px;
+            width: 200px;
+        }
+        .edit-form button {
+            padding: 8px 12px;
+            margin: 5px;
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+            .actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .actions button {
+                width: 100%;
+                margin: 5px 0;
+            }
+            .search-bar {
+                display: block;
+                width: 100%;
+                margin-top: 10px;
+            }
+            .edit-form input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 5px;
+            }
+            .actions button {
+                font-size: 14px;
+            }
+            .edit-form input {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerenciar Usuários</h1>
+
+    <!-- Botões de Ação com Barra de Busca ao lado -->
+    <div class="actions">
+        <button class="update" onclick="updateUsers()">Atualizar Usuários</button>
+        <button class="update" onclick="toggleListUsers()">Listar Usuários</button>
+        
+        <!-- Barra de Busca ao lado do botão -->
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="Pesquisar por nome, email ou telefone..." oninput="searchUser()">
+        </div>
+        
+        <div id="loadingSpinner" class="spinner"></div>
+    </div>
+
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Data de Nascimento</th>
+                <th>Senha</th>
+                <th>Pergunta de Segurança</th>
+                <th>Resposta de Segurança</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os usuários serão inseridos aqui dinamicamente -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função para carregar usuários e exibir na tabela
+        function loadUsers() {
+            const tableBody = document.querySelector("#userTable tbody");
+            tableBody.innerHTML = "";
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const user = JSON.parse(localStorage.getItem(key));
+
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${user.nomeCompleto}</td>
+                        <td>${key}</td>
+                        <td>${user.telefone}</td>
+                        <td>${user.dataNascimento}</td>
+                        <td>
+                            <span id="password-${key}" style="margin-right: 10px;">********</span>
+                            <button onclick="togglePassword('${key}')">👁️/Ocultar</button>
+                        </td>
+                        <td>${user.perguntaSeguranca}</td>
+                        <td>${user.respostaSeguranca}</td>
+                        <td>
+                            <button class="edit" onclick="toggleEditForm('${key}')">Editar</button>
+                            <button class="reset-password" onclick="resetPassword('${key}')">Alterar Senha</button>
+                            <button class="delete" onclick="deleteUser('${key}')">Excluir</button>
+                        </td>
+                    </tr>
+                    <tr id="edit-form-${key}" class="edit-form">
+                        <td colspan="8">
+                            <form onsubmit="saveEdit(event, '${key}')">
+                                <input type="text" id="edit-name-${key}" value="${user.nomeCompleto}" placeholder="Novo Nome">
+                                <input type="email" id="edit-email-${key}" value="${key}" readonly placeholder="Email">
+                                <input type="text" id="edit-phone-${key}" value="${user.telefone}" placeholder="Novo Telefone">
+                                <input type="date" id="edit-dob-${key}" value="${user.dataNascimento}" placeholder="Nova Data de Nascimento">
+                                <input type="text" id="edit-security-question-${key}" value="${user.perguntaSeguranca}" placeholder="Nova Pergunta de Segurança">
+                                <input type="text" id="edit-security-answer-${key}" value="${user.respostaSeguranca}" placeholder="Nova Resposta de Segurança">
+                                <button type="submit">Salvar</button>
+                                <button type="button" onclick="toggleEditForm('${key}')">Cancelar</button>
+                            </form>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Função para alternar entre mostrar e ocultar a senha
+        function togglePassword(email) {
+            const passwordSpan = document.getElementById(`password-${email}`);
+            const user = JSON.parse(localStorage.getItem(email));
+            if (passwordSpan.textContent === "********") {
+                passwordSpan.textContent = user.senha;
+            } else {
+                passwordSpan.textContent = "********";
+            }
+        }
+
+        // Função para atualizar todos os usuários com animação de carregamento
+        function updateUsers() {
+            const spinner = document.getElementById("loadingSpinner");
+            spinner.style.display = "inline-block"; // Exibe o spinner
+            setTimeout(() => {
+                loadUsers(); // Recarrega a lista de usuários
+                spinner.style.display = "none"; // Oculta o spinner após 1 segundo
+            }, 1000); // Simula um atraso no carregamento
+        }
+
+        // Função para editar as informações de um usuário
+        function toggleEditForm(email) {
+            const formRow = document.getElementById(`edit-form-${email}`);
+            const isVisible = formRow.style.display === "table-row";
+            if (isVisible) {
+                formRow.style.display = "none"; // Oculta o formulário de edição
+            } else {
+                formRow.style.display = "table-row"; // Exibe o formulário de edição
+            }
+        }
+
+        function saveEdit(event, email) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            const name = document.getElementById(`edit-name-${email}`).value;
+            const phone = document.getElementById(`edit-phone-${email}`).value;
+            const dob = document.getElementById(`edit-dob-${email}`).value;
+            const question = document.getElementById(`edit-security-question-${email}`).value;
+            const answer = document.getElementById(`edit-security-answer-${email}`).value;
+
+            const user = JSON.parse(localStorage.getItem(email));
+            user.nomeCompleto = name;
+            user.telefone = phone;
+            user.dataNascimento = dob;
+            user.perguntaSeguranca = question;
+            user.respostaSeguranca = answer;
+
+            localStorage.setItem(email, JSON.stringify(user));
+
+            loadUsers(); // Recarrega a lista de usuários
+        }
+
+        // Função para excluir um usuário
+        function deleteUser(email) {
+            if (confirm(`Você tem certeza que deseja excluir o usuário ${email}?`)) {
+                localStorage.removeItem(email);
+                loadUsers(); // Recarrega a lista de usuários após a exclusão
+            }
+        }
+
+        // Função para alterar a senha de um usuário
+        function resetPassword(email) {
+            const user = JSON.parse(localStorage.getItem(email));
+            const newPassword = prompt("Digite a nova senha para o usuário:", user.senha);
+            if (newPassword) {
+                user.senha = newPassword;
+                localStorage.setItem(email, JSON.stringify(user));
+                loadUsers(); // Recarrega a lista de usuários após a alteração
+            }
+        }
+
+        // Função para exibir ou ocultar a barra de pesquisa
+        function toggleListUsers() {
+            const searchBar = document.getElementById('searchBar');
+            searchBar.style.display = (searchBar.style.display === 'none') ? 'inline-block' : 'none';
+            loadUsers(); // Carrega os usuários após clicar para listar
+        }
+
+   // Função para realizar a busca de usuários
+function searchUser () {
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#userTable tbody tr");
+
+    rows.forEach(row => {
+        // Verifica se a linha é um formulário de edição
+        if (row.classList.contains('edit-form')) {
+            return; // Ignora a linha de edição na busca
+        }
+        
+        const name = row.cells[0].textContent.toLowerCase();
+        const email = row.cells[1].textContent.toLowerCase();
+        const phone = row.cells[2].textContent.toLowerCase();
+        const dob = row.cells[3].textContent.toLowerCase();
+
+        // Verifica se a linha deve ser exibida ou não
+        if (name.includes(searchTerm) || email.includes(searchTerm) || phone.includes(searchTerm) || dob.includes(searchTerm)) {
+            row.style.display = ""; // Exibe a linha
+            const editFormRow = document.getElementById(`edit-form-${email}`);
+            if (editFormRow) {
+                editFormRow.style.display = editFormRow.style.display === "table-row" ? "table-row" : "none"; // Mantém o estado do formulário de edição
+            }
+        } else {
+            row.style.display = "none"; // Oculta a linha
+            const editFormRow = document.getElementById(`edit-form-${email}`);
+            if (editFormRow) {
+                editFormRow.style.display = "none"; // Oculta o formulário de edição se a linha principal estiver oculta
+            }
+        }
+    });
+}
+
+        // Inicializa a lista de usuários ao carregar a página
+        window.onload = loadUsers;
+    </script>
+</body>
+</html>

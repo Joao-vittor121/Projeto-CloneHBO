@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de Senha | HBO Max</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/entrar.css">
+    <link rel="shortcut icon" href="/clone-hbomaxx/assets/img/meme.webp" type="image/x-icon">
+    <style>
+        /* Aumentando os campos de input */
+        input[type="email"], input[type="text"], input[type="password"] {
+            width: 100%;      /* Faz o campo ocupar toda a largura disponível */
+            padding: 15px;    /* Aumenta o espaço interno do campo */
+            font-size: 15px;  /* Aumenta o tamanho da fonte dentro do campo */
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            #container {
+                padding: 10px;
+            }
+            .form-container {
+                padding: 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            input[type="email"], input[type="text"], input[type="password"] {
+                padding: 12px;
+                font-size: 14px;
+            }
+            button {
+                padding: 12px;
+                font-size: 14px;
+            }
+            nav.menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav.menu a.menu-item {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-link {
+                display: block;
+                margin-bottom: 10px;
+            }
+            .footer-social-link {
+                margin: 0 10px;
+            }
+            input[type="email"], input[type="text"], input[type="password"] {
+                font-size: 13px;
+            }
+            button {
+                font-size: 13px;
+                padding: 10px;
+            }
+            .footer-social {
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+
+        /* Animação fade-in */
+        body {
+            font-family: Arial, sans-serif;
+            animation: fadeIn 1s ease-in-out; /* Efeito fade-in */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Estilo para o botão de voltar */
+        #btnVoltar {
+            background-color: #007bff; /* Cor do botão */
+            color: white; /* Cor do texto */
+            padding: 12px; /* Espaçamento */
+            font-size: 16px; /* Tamanho da fonte */
+            border: none; /* Remove a borda padrão */
+            border-radius: 4px; /* Borda arredondada */
+            cursor: pointer; /* Muda o cursor ao passar o mouse */
+            text-align: center; /* Centraliza o texto */
+            display: block; /* Torna o botão em bloco */
+            width: 100%; /* Faz o botão ocupar toda a largura */
+        }
+
+        #btnVoltar:hover {
+            background-color: #0056b3; /* Cor do botão quando passar o mouse */
+        }
+
+        /* Centraliza o link de voltar */
+        .centralizar {
+            text-align: center; /* Centraliza o conteúdo */
+            margin-top: 20px; /* Espaço entre o formulário e o link */
+        }
+    </style>
+</head>
+<body>
+    <p>Clique no simbolo da HBO para voltar à tela inicial.</p>
+
+    <nav class="menu">
+        <a href="../index.html" class="menu-logo">
+            <img src="../assets/img/hbo-logo.svg" alt="Logotipo HBO Max">
+        </a>
+        <div>
+            <a href="entrar.html" class="menu-item">Entrar/</a>
+            <a class="name">Grupo da A³</a>
+        </div>
+    </nav>
+    
+    <!-- Formulário de Recuperação de Senha -->
+    <div id="container">
+        <div id="recuperacao" class="form-container">
+            <h2>Recuperação de Senha</h2>
+            <form id="formRecuperacao">
+                <input type="email" id="emailRecuperacao" placeholder="Email" required>
+                <input type="text" id="respostaSegurancaRecuperacao" placeholder="Resposta à pergunta de segurança" required>
+                <input type="password" id="novaSenha" placeholder="Nova Senha" required>
+                <button type="submit" id="btnEnviar" disabled>Enviar</button> <!-- Botão desabilitado inicialmente -->
+            </form>
+
+            <!-- Botão para voltar à página de login -->
+            <div class="centralizar">
+                <a href="entrar.html">Voltar</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer container">
+        <div>
+            <a class="footer-link" href="../pages/em-breve.html">Em breve/</a>
+            <a class="footer-link" href="../pages/destaques.html">Filmes em destaques/</a>
+            <a class="footer-link" href="../pages/quem-somos.html">Quem Somos/</a>
+            <a class="footer-link" href="../pages/ajuda.html">Ajuda/</a>
+        </div>
+        <p class="text-small footer-legal">2024.2 Grupo 03 da A3. S,L,P,D,G. Todos os direitos reservados.</p>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/HBOMaxBr/" class="footer-social-link">
+                <img src="../assets/img/fb_0.png" alt="Facebook">
+            </a>
+            <a href="https://twitter.com/HBOMaxBR" class="footer-social-link">
+                <img src="../assets/img/twitter_0.png" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/hbomaxbr/" class="footer-social-link">
+                <img src="../assets/img/instagram_0.png" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com/c/hbomaxbr" class="footer-social-link">
+                <img src="../assets/img/youtube_0.png" alt="Youtube">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("formRecuperacao").addEventListener("input", function() {
+            // Verifica se todos os campos estão preenchidos
+            var email = document.getElementById("emailRecuperacao").value;
+            var respostaSeguranca = document.getElementById("respostaSegurancaRecuperacao").value;
+            var novaSenha = document.getElementById("novaSenha").value;
+            var btnEnviar = document.getElementById("btnEnviar");
+
+            // Habilita o botão apenas quando todos os campos estiverem preenchidos
+            if (email && respostaSeguranca && novaSenha) {
+                btnEnviar.disabled = false;  // Habilita o botão se todos os campos estiverem preenchidos
+            } else {
+                btnEnviar.disabled = true;   // Desabilita o botão se algum campo não estiver preenchido
+            }
+        });
+
+        document.getElementById("formRecuperacao").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var email = document.getElementById("emailRecuperacao").value;
+            var respostaSeguranca = document.getElementById("respostaSegurancaRecuperacao").value;
+            var novaSenha = document.getElementById("novaSenha").value;
+
+            var usuario = JSON.parse(localStorage.getItem(email));
+
+            if (usuario && usuario.respostaSeguranca === respostaSeguranca) {
+                usuario.senha = novaSenha;
+                localStorage.setItem(email, JSON.stringify(usuario));
+                alert("Senha alterada com sucesso!");
+            } else {
+                alert("Resposta à pergunta de segurança incorreta!");
+            }
+        });
+    </script>
+</body>
+</html>

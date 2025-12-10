@@ -1,0 +1,262 @@
+/* Resetando o padding e margin para todos os elementos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo do body */
+body {
+  font-family: 'Sans';
+  background-image: url("../img/background-movies-series.png"); /* Imagem de fundo */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh; /* Garantir que o body ocupe toda a altura da tela */
+  position: relative;
+}
+
+/* Container principal para os formulários */
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 450px; /* Largura máxima do contêiner */
+  padding: 20px;
+  background: rgba(25, 25, 25, 0.9); /* Fundo semitransparente */
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  position: relative;
+  margin-bottom: 100px; /* Espaço para o rodapé não se sobrepor */
+}
+
+/* Título do formulário */
+h2 {
+  text-align: center;
+  color: #F1F1F1; /* Branco suave */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Formulários */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input e campos do formulário */
+input {
+  margin: 10px 0;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Quando o campo é focado */
+input:focus {
+  background-color: #5500FF; /* Quando o campo é focado, a cor fica lilás */
+  outline: none;
+}
+
+/* Botões */
+button {
+  padding: 15px;
+  background-color: #8E24AA; /* Roxo vibrante */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover nos botões */
+button:hover {
+  background-color: #5E1E88; /* Roxo mais escuro no hover */
+}
+
+/* Links */
+a {
+  color: #8E24AA;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Avatar do usuário */
+.usuario-info {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #8E24AA; /* Cor do avatar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#nomeUsuario {
+  font-size: 20px;
+  color: #F1F1F1;
+}
+
+/* Rodapé */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  background-color: #222;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 140px;
+  margin-top: 10px;
+}
+
+.footer button {
+  padding: 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.footer button:hover {
+  background-color: #8E24AA;
+}
+
+/* Tela de Login e Cadastro - Centralização */
+.login {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--form-bg-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+}
+
+.login-title {
+  background: var(--form-field-bg-color);
+  border: var(--form-field-border);
+  border-radius: 8px;
+  color: var(--text-color);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px;
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+
+.login-label {
+  text-align: left;
+}
+
+.login-field {
+  background: var(--form-field-bg-color);
+  border: var(--form-field-border);
+  border-radius: 8px;
+  color: var(--text-color);
+  padding: 16px;
+  font-size: 1rem;
+}
+
+.login-field::placeholder {
+  color: var(--form-field-placeholder);
+}
+
+.login-field:invalid {
+  border-color: var(--form-field-error);
+}
+
+.login-actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.login-link {
+  color: var(--link-color);
+  text-decoration: none;
+  margin-left: 24px;
+  font-weight: bold;
+}
+
+/* Media Queries para Responsividade */
+
+@media screen and (max-width: 480px) {
+  body {
+      height: auto;
+  }
+
+  .login-actions .button {
+      display: block;
+      margin-bottom: 24px;
+  }
+
+  .login-link {
+      margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+      flex-direction: column;
+      gap: 10px; /* Menos espaçamento em telas pequenas */
+  }
+}
+
+/* Tela do Jogo */
+#gameContainer {
+  text-align: center;
+  padding: 20px;
+}
+
+#gameCanvas {
+  border: 2px solid #fbfcfa;
+  margin-top: 20px;
+}
+
+/* Estilo do Botão de Restart */
+#restartButton {
+  background-color: #4CAF50;
+  color: rgb(252, 253, 251);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#restartButton:hover {
+  background-color: #45a049;
+}
+

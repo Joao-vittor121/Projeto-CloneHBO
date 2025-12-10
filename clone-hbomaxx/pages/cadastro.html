@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | HBO Max</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/entrar.css">
+    <link rel="shortcut icon" href="/clone-hbomaxx/assets/img/meme.webp" type="image/x-icon">
+    <style>
+        /* Estilos para telas grandes (desktops) */
+        body {
+            font-family: Arial, sans-serif;
+            animation: fadeIn 1s ease-in-out; /* Adiciona o efeito fade-in */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .menu-logo img {
+            height: 40px;
+        }
+
+        /* Alinha "Entrar" à esquerda e "Grupo da A³" à direita, sem espaço entre eles */
+        .menu div {
+            display: flex;
+            width: 100%;
+            margin-top: 10px;
+            justify-content: center;  /* Alinha os itens horizontalmente sem espaço */
+        }
+
+        .menu div a {
+            margin: 0; /* Remove qualquer margem entre os links */
+        }
+
+        #container {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Formulário */
+        #cadastro {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        form input, form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* Para dispositivos menores que 768px (ex. celulares e tablets) */
+        @media screen and (max-width: 768px) {
+            /* Menu */
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-logo img {
+                height: 30px;
+            }
+
+            .menu a {
+                margin-top: 10px;
+            }
+
+            /* Formulário */
+            #cadastro {
+                padding: 15px;
+            }
+
+            form input, form button {
+                padding: 12px;
+                margin: 8px 0;
+            }
+
+            footer {
+                font-size: 14px;
+            }
+        }
+
+        /* Para dispositivos móveis muito pequenos (menos de 480px) */
+        @media screen and (max-width: 480px) {
+            .menu-logo img {
+                height: 25px;
+            }
+
+            /* Ajustar o formulário para caber melhor */
+            #cadastro {
+                padding: 10px;
+            }
+
+            form input, form button {
+                padding: 10px;
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>Clique no símbolo da HBO para voltar à tela inicial.</p>
+
+    <nav class="menu">
+        <a href="../index.html" class="menu-logo">
+            <img src="../assets/img/hbo-logo.svg" alt="Logotipo HBO Max">
+        </a>
+        <div>
+            <!-- "Entrar" à esquerda e "Grupo da A³" à direita -->
+            <a href="entrar.html" class="menu-item">Entrar/</a>
+            <a class="name">Grupo da A³</a>
+        </div>
+    </nav>
+
+    <!-- Formulário de Cadastro -->
+    <div id="container">
+        <div id="cadastro" class="form-container">
+            <h2>Cadastro</h2>
+            <form id="formCadastro">
+                <input type="text" id="nomeCompleto" placeholder="Nome Completo" required>
+                <input type="email" id="emailCadastro" placeholder="Email" required>
+                <input type="text" id="telefoneCadastro" placeholder="Telefone (Ex: 99999999999)" pattern="^\d{11}$" required>
+                <input type="date" id="dataNascimento" placeholder="Data de Nascimento" required>
+                <input type="password" id="senhaCadastro" placeholder="Senha" required>
+                <input type="text" id="perguntaSeguranca" placeholder="Pergunta de segurança" required>
+                <input type="text" id="respostaSeguranca" placeholder="Resposta à pergunta de segurança" required>
+                <button type="submit">Cadastrar</button>
+                <!-- Link para a página de login -->
+                <p>Já tem uma conta? <a href="entrar.html">Entrar</a></p>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer container">
+        <div>
+            <a class="footer-link" href="../pages/em-breve.html">Em breve/</a>
+            <a class="footer-link" href="../pages/destaques.html">Filmes em destaques/</a>
+            <a class="footer-link" href="../pages/quem-somos.html">Quem Somos/</a>
+            <a class="footer-link" href="../pages/ajuda.html">Ajuda/</a>
+        </div>
+        <p class="text-small footer-legal">2024.2 Grupo 03 da A3. S,L,P,D,G. Todos os direitos reservados.</p>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/HBOMaxBr/" class="footer-social-link">
+                <img src="../assets/img/fb_0.png" alt="Facebook">
+            </a>
+            <a href="https://twitter.com/HBOMaxBR" class="footer-social-link">
+                <img src="../assets/img/twitter_0.png" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/hbomaxbr/" class="footer-social-link">
+                <img src="../assets/img/instagram_0.png" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com/c/hbomaxbr" class="footer-social-link">
+                <img src="../assets/img/youtube_0.png" alt="Youtube">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("formCadastro").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var nomeCompleto = document.getElementById("nomeCompleto").value;
+            var email = document.getElementById("emailCadastro").value;
+            var telefone = document.getElementById("telefoneCadastro").value;
+            var dataNascimento = document.getElementById("dataNascimento").value;
+            var senha = document.getElementById("senhaCadastro").value;
+            var perguntaSeguranca = document.getElementById("perguntaSeguranca").value;
+            var respostaSeguranca = document.getElementById("respostaSeguranca").value;
+
+            // Validação do telefone
+            if (telefone.length !== 11) {
+                alert("O telefone deve conter exatamente 11 dígitos!");
+                return;
+            }
+
+            // Validação do formato de email
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Insira um email válido!");
+                return;
+            }
+
+            // Verificar se o email já foi cadastrado
+            if (localStorage.getItem(email)) {
+                alert("Este email já foi cadastrado!");
+                return;
+            }
+
+            // Criando o objeto usuário com os dados do formulário
+            var usuario = {
+                nomeCompleto: nomeCompleto,
+                email: email,
+                telefone: telefone,
+                dataNascimento: dataNascimento,
+                senha: senha,
+                perguntaSeguranca: perguntaSeguranca,
+                respostaSeguranca: respostaSeguranca
+            };
+
+            // Armazenando o usuário no localStorage usando o email como chave
+            localStorage.setItem(email, JSON.stringify(usuario));
+
+            alert("Cadastro realizado com sucesso!");
+
+            // Redirecionando para a página de login
+            window.location.href = "entrar.html";
+        });
+    </script>
+</body>
+</html>

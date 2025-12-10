@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuda</title>
+    <link rel="stylesheet" href="../assets/css/entrar.css" />
+    <link rel="shortcut icon" href="/clone-hbomaxx/assets/img/meme.webp" type="image/x-icon">
+    <style>
+        /* Exemplo de transição de fade-in */
+        body {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Layout */
+        main {
+            max-width: 1200px; /* Limita a largura do conteúdo */
+            margin: 0 auto; /* Centraliza horizontalmente */
+            padding: 20px; /* Espaço interno */
+            text-align: left; /* Alinha o texto à esquerda */
+            display: flex; /* Habilita o layout flex */
+            flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+            gap: 20px; /* Espaçamento entre as colunas */
+        }
+
+        header {
+            text-align: center; /* Centraliza o texto do cabeçalho */
+            width: 100%; /* Garante que o cabeçalho ocupe toda a largura */
+        }
+
+        section {
+            flex: 1 1 45%; /* Permite que as seções ocupem 45% da largura, quebrando quando necessário */
+            min-width: 250px; /* Garante que as seções não fiquem muito estreitas em telas pequenas */
+            margin-bottom: 20px; /* Adiciona espaçamento entre as seções */
+        }
+
+        h2 {
+            font-size: 24px; /* Tamanho do título das seções */
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px; /* Tamanho do título das perguntas */
+        }
+
+        p {
+            font-size: 16px; /* Tamanho do texto das respostas */
+            line-height: 1.5;
+        }
+
+        a {
+            color: #0066cc; /* Cor do link */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column; /* Empilha as seções verticalmente em telas menores */
+            }
+
+            h2 {
+                font-size: 20px; /* Reduz o tamanho dos títulos em telas menores */
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 14px; /* Reduz o tamanho da fonte do parágrafo */
+            }
+
+            .footer-social-link img {
+                width: 25px; /* Ajusta o tamanho das imagens das redes sociais */
+            }
+
+            .menu-logo-image {
+                width: 90px; /* Ajusta o tamanho do logo no menu */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 18px; /* Reduz ainda mais o tamanho do título */
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 12px; /* Ajusta o tamanho do texto para telas muito pequenas */
+            }
+
+            .menu-logo-image {
+                width: 80px; /* Ajusta ainda mais o logo no menu */
+            }
+
+            footer {
+                text-align: center; /* Centraliza o conteúdo do rodapé */
+            }
+
+            .footer-social {
+                display: flex;
+                justify-content: center; /* Centraliza os ícones sociais */
+                gap: 10px;
+            }
+        }
+
+        /* Carregamento */
+        #carregando {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #carregando img {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tela de Carregamento -->
+    <div id="carregando">
+        <img src="../assets/img/loader.gif" alt="Carregando...">
+    </div>
+
+    <p>Clique no simbolo da HBO para voltar à tela inicial.</p>
+    <nav class="menu">
+        <a href="../index.html" class="menu-logo">
+            <img
+                src="../assets/img/hbo-logo.svg"
+                alt="Logotipo HBOMax com o nome da marca"
+                class="menu-logo-image"
+            />
+        </a>
+        <div>
+            <a href="entrar.html" class="menu-item">Entrar/</a>
+            <a class="name">Grupo da A³</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Centro de Ajuda</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Perguntas Frequentes (FAQ)</h2>
+            <h3>1. Como faço para criar uma conta?</h3>
+            <p>Para criar uma conta, clique no botão "Cadastrar" na página inicial e preencha as informações solicitadas.</p>
+
+            <h3>2. Esqueci minha senha, como posso recuperá-la?</h3>
+            <p>Na página de login, clique em "Esqueci minha senha?" e siga as instruções enviadas para o seu e-mail.</p>
+
+            <h3>3. Como entrar em contato com o suporte?</h3>
+            <p>Você pode entrar em contato conosco através do formulário de contato em nossa página "Contato".</p>
+        </section>
+
+        <section>
+            <h2>Recursos Adicionais</h2>
+            <p>Confira nossos tutoriais e guias na seção de recursos do nosso site para mais ajuda.</p>
+        </section>
+
+        <section>
+            <h2>Contato</h2>
+            <p>Se você não encontrou a resposta para sua pergunta, sinta-se à vontade para nos enviar um e-mail para: <a href="mailto:support@example.com">support@example.com</a>.</p>
+        </section>
+    </main>
+
+    <footer class="footer container">
+        <div>
+            <a class="footer-link" href="../pages/em-breve.html">Em breve/</a>
+            <a class="footer-link" href="../pages/destaques.html">Filmes em destaques/</a>
+            <a class="footer-link" href="../pages/quem-somos.html">Quem Somos/</a>
+            <a class="footer-link" href="../pages/ajuda.html">Ajuda/</a>
+        </div>
+        <p class="text-small footer-legal">2024.2 Grupo 03 da A3. siglas do nosso grupo S,L,P,D,F, Todos os direitos reservados.</p>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/HBOMaxBr/" class="footer-social-link">
+                <img src="../assets/img/fb_0.png" alt="Facebook" />
+            </a>
+            <a href="https://twitter.com/HBOMaxBR" class="footer-social-link">
+                <img src="../assets/img/twitter_0.png" alt="Twitter" />
+            </a>
+            <a href="https://www.instagram.com/hbomaxbr/" class="footer-social-link">
+                <img src="../assets/img/instagram_0.png" alt="Instagram" />
+            </a>
+            <a href="https://www.youtube.com/c/hbomaxbr" class="footer-social-link">
+                <img src="../assets/img/youtube_0.png" alt="Youtube" />
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Função de fade-in
+        window.onload = function () {
+            document.body.classList.add('loaded'); // Adiciona a classe 'loaded' quando a página foi carregada
+            document.getElementById('carregando').style.display = 'none'; // Oculta a tela de carregamento
+        };
+
+        // Validação do formulário (exemplo simples)
+        function validarFormulario() {
+            const email = document.getElementById('email');
+            const senha = document.getElementById('senha');
+            const erro = document.getElementById('erro');
+
+            // Limpa erros anteriores
+            erro.textContent = '';
+
+            if (!email.value) {
+                erro.textContent = 'Por favor, insira seu email.';
+                return false;
+            }
+
+            if (!senha.value) {
+                erro.textContent = 'Por favor, insira sua senha.';
+                return false;
+            }
+
+            return true;
+        }
+
+        // Exemplo de exibição de erros
+        function mostrarErro(msg) {
+            const erro = document.createElement('div');
+            erro.classList.add('erro');
+            erro.textContent = msg;
+            document.body.appendChild(erro);
+        }
+    </script>
+</body>
+</html>

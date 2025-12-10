@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | HBO Max</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/entrar.css">
+    <link rel="shortcut icon" href="/clone-hbomaxx/assets/img/meme.webp" type="image/x-icon">
+    <style>
+        /* Estilo para fade-in */
+        body {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            /* Ajustes para dispositivos móveis */
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-logo img {
+                height: 30px;
+            }
+
+            .menu a {
+                margin-top: 10px;
+            }
+
+            #login {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            form input, form button {
+                padding: 12px;
+                margin: 8px 0;
+            }
+
+            footer {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .menu-logo img {
+                height: 25px;
+            }
+
+            #login {
+                padding: 10px;
+            }
+
+            form input, form button {
+                padding: 10px;
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>Clique no simbolo da HBO para voltar à tela inicial.</p>
+    <!-- Menu -->
+    <nav class="menu">
+        <a href="../index.html" class="menu-logo">
+            <img src="../assets/img/hbo-logo.svg" alt="Logotipo HBO Max">
+        </a>
+        <div>
+            <a href="cadastro.html" class="menu-item">Cadastre-se/</a>
+            <a class="name">Grupo da A³</a>
+        </div>
+    </nav>
+
+    <!-- Container de Login -->
+    <div id="container">
+        <div id="login" class="form-container">
+            <h2>Login</h2>
+            <form id="formLogin">
+                <input type="email" id="emailLogin" placeholder="Email" required>
+                <input type="password" id="senhaLogin" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <p>Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            <p><a href="recuperar-senha.html">Esqueceu a senha?</a></p> <!-- Novo link para recuperação -->
+        </div>
+    </div>
+
+    <footer class="footer container">
+        <div>
+            <a class="footer-link" href="../pages/em-breve.html">Em breve/</a>
+            <a class="footer-link" href="../pages/destaques.html">Filmes em destaques/</a>
+            <a class="footer-link" href="../pages/quem-somos.html">Quem Somos/</a>
+            <a class="footer-link" href="../pages/ajuda.html">Ajuda/</a>
+        </div>
+        <p class="text-small footer-legal">2024.2 Grupo 03 da A3. S,L,P,D,G. Todos os direitos reservados.</p>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/HBOMaxBr/" class="footer-social-link">
+                <img src="../assets/img/fb_0.png" alt="Facebook">
+            </a>
+            <a href="https://twitter.com/HBOMaxBR" class="footer-social-link">
+                <img src="../assets/img/twitter_0.png" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/hbomaxbr/" class="footer-social-link">
+                <img src="../assets/img/instagram_0.png" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com/c/hbomaxbr" class="footer-social-link">
+                <img src="../assets/img/youtube_0.png" alt="Youtube">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito de fade-in ao carregar a página
+        window.onload = function () {
+            document.body.classList.add('loaded');
+        };
+
+        document.getElementById("formLogin").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var email = document.getElementById("emailLogin").value;
+            var senha = document.getElementById("senhaLogin").value;
+
+            var usuario = JSON.parse(localStorage.getItem(email));
+
+            if (usuario && usuario.senha === senha) {
+                alert("Login bem-sucedido!");
+                window.location.href = "../pages/cobrinha.html";
+            } else {
+                alert("Email ou senha inválidos!");
+            }
+        });
+    </script>
+</body>
+</html>
